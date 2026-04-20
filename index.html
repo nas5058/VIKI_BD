@@ -30,15 +30,14 @@
     line-height: 1.8;
     }
     .joke-hint {
-    font-style: italic;           /* Курсив */
-    font-size: 0.85rem;           /* Меньше основного текста */
-    color: var(--text-muted);     /* Тусклый цвет */
-    opacity: 0.8;                 /* Лёгкая прозрачность */
+    font-style: italic;           
+    font-size: 0.85rem;           
+    color: var(--text-muted);     
+    opacity: 0.8;                
     display: inline-block;
     margin: 4px 0;
     }
 
-    /* Для телефонов — чуть крупнее, чтобы читалось */
     @media (max-width: 480px) {
     .joke-hint {
         font-size: 0.9rem;
@@ -186,9 +185,6 @@
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
 
-
-
-
     }
     button[type="submit"]:hover { background: var(--gold-hover); }
     button[type="submit"]:active { transform: scale(0.98); }
@@ -225,7 +221,6 @@
     <header>
       <h1>🥂Приглашение!🥂</h1>
 
-      <!-- 📍 Адрес и информация -->
       <div class="info-block">
         <strong> </strong>
         <p><strong>Дата</strong> 14 июня 2026г, воскресенье</p>
@@ -236,7 +231,7 @@
       </div>
     </header>
 
-    <!-- 💬 Приветствие -->
+
     <div class="glass-intro">
     Дорогие мои гости! <br>
     Прошу отписаться о своем прибытии или отсутствии до <span style="color: #ff6b6b; font-weight: 600;">1 мая</span>!
@@ -244,8 +239,6 @@
     Пожалуйста, заполните анкетку ниже, которая позволит нам сделать этот день еще лучше ❤️
     </div>
 
-
-    <!-- 📋 Форма RSVP -->
     <form id="rsvp-form" action="https://formspree.io/f/mlgawdon" method="POST">
       <input type="text" name="_gotcha" style="display:none">
       <input type="hidden" name="_subject" value="Новый RSVP с приглашения!">
@@ -343,7 +336,7 @@
   </div>
 
   <script>
-    // Условные поля формы
+
     document.querySelectorAll('input[name="guest_count"]').forEach(r =>
       r.addEventListener('change', () =>
         document.getElementById('plus-one-field').classList.toggle('active', r.value === '+1'))
@@ -357,7 +350,7 @@
         document.getElementById('tickets-field').classList.toggle('active', r.value === 'Да'))
     );
 
-    // Отправка формы
+
     const form = document.getElementById('rsvp-form');
     const status = document.getElementById('form-status');
 
@@ -386,10 +379,8 @@
         form.reset();
         document.querySelectorAll('.conditional').forEach(el => el.classList.remove('active'));
 
-        // Показываем напоминание о пляжных вещах
         document.getElementById('beach-reminder').style.display = 'block';
 
-        // Прокрутка к напоминанию
         setTimeout(() => {
             document.getElementById('beach-reminder').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 100);
