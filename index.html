@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Приглашение на День Рождения</title>
+  <meta property="og:title" content="Приглашение на День Рождение">
+  <meta property="og:description" content="Жду тебя в этот особенный вечер. Заполни форму, чтобы я всё подготовила идеально.">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630/0a0a0a/d4af37?text=Dark+Elegance">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    .beach-reminder {
+    background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(20,20,20,0.9) 100%);
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 24px;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+    }
+    .beach-reminder h3 {
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    }
+    .beach-reminder p {
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.8;
+    }
+    .joke-hint {
+    font-style: italic;           /* Курсив */
+    font-size: 0.85rem;           /* Меньше основного текста */
+    color: var(--text-muted);     /* Тусклый цвет */
+    opacity: 0.8;                 /* Лёгкая прозрачность */
+    display: inline-block;
+    margin: 4px 0;
+    }
+
+    /* Для телефонов — чуть крупнее, чтобы читалось */
+    @media (max-width: 480px) {
+    .joke-hint {
+        font-size: 0.9rem;
+    }
+    }
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --text-muted: #8a8a8a;
+      --gold: #d4af37;
+      --gold-hover: #b8962e;
+      --success: #4caf50;
+      --error: #f44336;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .hero-banner {
+      position: relative;
+      width: 100%;
+      line-height: 0;
+      max-height: 800px;
+      overflow: hidden;
+    }
+    .hero-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      max-height: 500px;
+    }
+
+    .hero-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 150px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+      margin-top: -40px;
+    }
+
+    header { text-align: center; margin-bottom: 20px; }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+
+    .info-block {
+      background: rgba(20, 20, 20, 0.9);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+    .info-block strong { color: var(--gold); display: block; margin-bottom: 4px; font-size: 1.1rem; }
+    .info-block p { margin: 4px 0; color: var(--text); }
+    .info-block .hint { font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; }
+
+
+    .glass-intro {
+      background: rgba(20, 20, 20, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 28px;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 8px; font-weight: 500; }
+    input[type="text"], textarea, select {
+      width: 100%;
+      padding: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 16px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(212,175,55,0.2);
+    }
+    .radio-group, .checkbox-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+    .radio-group label, .checkbox-group label {
+      background: var(--surface);
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .radio-group input:checked + span,
+    .checkbox-group input:checked + span {
+      background: var(--gold);
+      color: #0a0a0a;
+      border-color: var(--gold);
+    }
+    input[type="radio"], input[type="checkbox"] { display: none; }
+    .conditional { display: none; margin-top: 10px; animation: fadeIn 0.3s; }
+    .conditional.active { display: block; }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      background: var(--gold);
+      color: #0a0a0a;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+
+
+
+
+    }
+    button[type="submit"]:hover { background: var(--gold-hover); }
+    button[type="submit"]:active { transform: scale(0.98); }
+
+    .message { padding: 12px; border-radius: 8px; margin-top: 12px; text-align: center; display: none; }
+    .message.success { background: rgba(76,175,80,0.1); color: var(--success); display: block; }
+    .message.error { background: rgba(244,67,54,0.1); color: var(--error); display: block; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 480px) {
+      body { padding: 12px; touch-action: manipulation; }
+      .hero-img { max-height: 320px; }
+      h1 { font-size: 1.7rem; }
+      .info-block { padding: 12px; font-size: 1rem; }
+      .info-block strong { font-size: 1.2rem; }
+      .glass-intro { font-size: 1.05rem; padding: 14px; }
+      .map-container { height: 200px; }
+      input, textarea, select { font-size: 16px !important; padding: 14px; }
+      .radio-group label, .checkbox-group label { padding: 10px 14px; font-size: 0.95rem; }
+      button[type="submit"] { padding: 16px; font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="hero-banner">
+    <img src="IMG_2769.jpeg" alt="Приглашение" class="hero-img">
+    <div class="hero-fade"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>🥂Приглашение!🥂</h1>
+
+      <!-- 📍 Адрес и информация -->
+      <div class="info-block">
+        <strong> </strong>
+        <p><strong>Дата</strong> 14 июня 2026г, воскресенье</p>
+        <p><strong>Адрес</strong> Федеральная Территория Сириус</p>
+         <p><strong>Топографичечкие маркеры:</strong> Солнце, море, пляж, пальмы и мы с Настей улыбаемся вам на встречу! </p>
+
+        <p class="hint"></p>
+      </div>
+    </header>
+
+    <!-- 💬 Приветствие -->
+    <div class="glass-intro">
+    Дорогие мои гости! <br>
+    Прошу отписаться о своем прибытии или отсутствии до <span style="color: #ff6b6b; font-weight: 600;">1 мая</span>!
+    <span class="joke-hint">Надеюсь отсутствие не рассматривается 😊</span> <br>
+    Пожалуйста, заполните анкетку ниже, которая позволит нам сделать этот день еще лучше ❤️
+    </div>
+
+
+    <!-- 📋 Форма RSVP -->
+    <form id="rsvp-form" action="https://formspree.io/f/mlgawdon" method="POST">
+      <input type="text" name="_gotcha" style="display:none">
+      <input type="hidden" name="_subject" value="Новый RSVP с приглашения!">
+
+      <div class="form-group">
+        <label>📝 Кто идёт?</label>
+        <input type="text" name="name" required placeholder="Ваше имя">
+      </div>
+
+      <div class="form-group">
+        <label>Вы один или с компанией?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="guest_count" value="Один/одна" required><span>Один / одна</span></label>
+          <label><input type="radio" name="guest_count" value="+1"><span>Буду с +1</span></label>
+        </div>
+        <div class="conditional" id="plus-one-field">
+          <input type="text" name="plus_one_name" placeholder="Имя вашего +1">
+        </div>
+      </div>
+
+      <div class="form-group">
+
+      <label>Важное про подарки</label>
+      <div style="text-align:center; margin:0; padding:12px; background:var(--surface); border-radius:8px; border-left:3px solid var(--gold); font-size:0.95rem; color:var(--text-muted);">
+        Цветы дарить не нужно — поставить их дома действительно некуда.<br>
+        Если хотите что-то положить в конверт, пусть это будут деньги. Я их сохраню и потом куплю то, что будет напоминать о вас.<br>
+        А самый главный подарок для меня — это вы, приехавшие и улыбающиеся. Жду. Очень. Спасибо! 🤍<br>
+      </div>
+
+      <div class="form-group">
+        <label>🍸 Алкогольные предпочтения</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="alcohol[]" value="Вино красное"><span> Вино красное</span></label>
+          <label><input type="checkbox" name="alcohol[]" value="Вино белое "><span> Вино белое</span></label>
+          <label><input type="checkbox" name="alcohol[]" value="Пиво/сидр"><span> Пиво/сидр</span></label>
+          <label><input type="checkbox" name="alcohol[]" value="Водка"><span>Водка</span></label>
+          <label><input type="checkbox" name="alcohol[]" value="Виски"><span>Виски</span></label>
+          <label><input type="checkbox" name="alcohol[]" value="Коньяк"><span>Коньяк</span></label>
+          <label><input type="checkbox" name="alcohol[]" value="Шампанское"><span>🥂 Шампанское</span></label>
+          <label><input type="checkbox" name="alcohol[]" value="Безалкогольное"><span>🧃 Б/А</span></label>
+        </div>
+        <input type="text" name="alcohol_other" placeholder="Свой вариант" style="margin-top:8px;">
+      </div>
+
+      <div class="form-group">
+        <label>🏡 Помощь с жильём</label>
+        <div class="radio-group">
+          <label><input type="radio" name="accommodation_needed" value="Нет"><span>Не нужно</span></label>
+          <label><input type="radio" name="accommodation_needed" value="Да"><span>Нужна помощь</span></label>
+          <label><input type="radio" name="accommodation_needed" value="Местный"><span>Местный</span></label>
+        </div>
+        <div class="conditional" id="accommodation-field">
+          <div class="radio-group">
+            <label><input type="radio" name="accommodation_type" value="Отель"><span>🏨 Отель</span></label>
+            <label><input type="radio" name="accommodation_type" value="Апартаменты"><span>🛌 Ищу компанию</span></label>
+            <label><input type="radio" name="accommodation_type" value="Рекомендации"><span>📍 Советы</span></label>
+          </div>
+          <textarea name="accommodation_comment" rows="2" placeholder="Комментарий" style="margin-top:8px;"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>🎟️ Помощь с билетами</label>
+        <div class="radio-group">
+          <label><input type="radio" name="tickets_needed" value="Нет"><span>Не нужно</span></label>
+          <label><input type="radio" name="tickets_needed" value="Да"><span>Нужна помощь</span></label>
+        </div>
+        <div class="conditional" id="tickets-field">
+          <div class="radio-group">
+            <label><input type="radio" name="tickets_type" value="Авиабилеты"><span>✈️ Авиа</span></label>
+            <label><input type="radio" name="tickets_type" value="Ж/Д"><span>🚆 Ж/д</span></label>
+            <label><input type="radio" name="tickets_type" value="Автобус"><span>🚌 Автобус</span></label>
+            <label><input type="radio" name="tickets_type" value="Совет"><span>🤔 Совет</span></label>
+          </div>
+          <textarea name="tickets_comment" rows="2" placeholder="Город, даты, бюджет..." style="margin-top:8px;"></textarea>
+        </div>
+      </div>
+
+      <button type="submit">✨ ОТПРАВИТЬ ✨</button>
+
+        <p class="hint"> </p>
+      <div id="form-status" class="message"></div>
+    </form>
+    <div id="beach-reminder" class="beach-reminder" style="display: none;">
+
+    <label>Дорогие гости, жопой не елозьте, с кровати вставайте и в Сочи приезжайте! Люблю, целую!<label>
+    <h3>Будьте внимательны и не забудьте: </h3>
+    <p>👙 Купальник / плавки<br>
+         🩴 Шлепки<br>
+         🧴 SPF (солнцезащитный крем)<br>
+         🕶️ Очки от солнца<br>
+         🧢 Кепку / шляпу<br>
+         😊 И отличное настроение!</p>
+    </div>
+  </div>
+
+  <script>
+    // Условные поля формы
+    document.querySelectorAll('input[name="guest_count"]').forEach(r =>
+      r.addEventListener('change', () =>
+        document.getElementById('plus-one-field').classList.toggle('active', r.value === '+1'))
+    );
+    document.querySelectorAll('input[name="accommodation_needed"]').forEach(r =>
+      r.addEventListener('change', () =>
+        document.getElementById('accommodation-field').classList.toggle('active', r.value === 'Да'))
+    );
+    document.querySelectorAll('input[name="tickets_needed"]').forEach(r =>
+      r.addEventListener('change', () =>
+        document.getElementById('tickets-field').classList.toggle('active', r.value === 'Да'))
+    );
+
+    // Отправка формы
+    const form = document.getElementById('rsvp-form');
+    const status = document.getElementById('form-status');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button');
+      btn.disabled = true;
+      btn.textContent = '⏳ Отправка...';
+      status.className = 'message';
+
+      try {
+        const formData = new FormData(form);
+        const alcohol = formData.getAll('alcohol[]').join(', ');
+        formData.set('alcohol', alcohol);
+        formData.delete('alcohol[]');
+
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+        status.className = 'message success';
+        status.textContent = '💾 Ваш ответ сохранён. Спасибо!';
+        form.reset();
+        document.querySelectorAll('.conditional').forEach(el => el.classList.remove('active'));
+
+        // Показываем напоминание о пляжных вещах
+        document.getElementById('beach-reminder').style.display = 'block';
+
+        // Прокрутка к напоминанию
+        setTimeout(() => {
+            document.getElementById('beach-reminder').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        }    else {
+          throw new Error('Ошибка сервера');
+        }
+      } catch (err) {
+        status.className = 'message error';
+        status.textContent = '❌ Ошибка. Попробуйте ещё раз или напишите лично.';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '✨ ОТПРАВИТЬ ✨';
+      }
+    });
+  </script>
+</body>
+</html>
